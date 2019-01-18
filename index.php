@@ -108,7 +108,7 @@ include "db_connection.php";
                 <br/>
                 <h4 class="white"><strong>สอบถาม</strong></h4>
 				<ul>
-					<li><font color="#FFFFFF">097 234 0388</font></li>
+					<li><font color="#FFFFFF"><a href="home_lamp.php">097 234 0388</a></font></li>
 				</ul>
 			</div>
 			

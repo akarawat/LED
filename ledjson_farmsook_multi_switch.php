@@ -1,4 +1,7 @@
 <?php
+/*
+ทำงานร่วมกับ FARMSOOK_SMART_PLUG_Json_MutiObject_V1.ino
+*/
 include "db_connection.php";
 
 if (isset($_GET["ledno"]) && $_GET["ledno2"]){
@@ -33,7 +36,7 @@ if (isset($_GET["ledno"]) && $_GET["ledno2"]){
 		echo $obj["secoff"];
 	}*/
 	
-	if (getLoopFlg("farmsook3")){
+	if (getLoopFlg("farmsook3")){  // For motor loop On-Off
 		if (getLoopSts("farmsook3")){
 			if (getLoopTime("farmsook3") <= $UTC){ //if time over set OFF and set time next ON
 				setOnOffLoop("farmsook3", "OFF", "F", $loop_sec);

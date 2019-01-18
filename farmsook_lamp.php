@@ -30,13 +30,26 @@ function getTimeOut($ledNo){
 	}
 	CloseCon($conn);
 	return $flgloops;
+	}
+function getSecOff($ledNo){		
+	$conn = OpenCon();
+	$sql = "select secoff from ledcfg where ledno = '".$ledNo."'";
+	//echo 'SQL='.$sql;
+	$result = $conn->query($sql);
+	if ($result->num_rows > 0) {
+		while($row = $result->fetch_assoc()) {
+			$flgloops = $row["secoff"];
+		}
+	}
+	CloseCon($conn);
+	return $flgloops;
 	}	
 ?>
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  	<title><?=$title?></title>
+  	<title>ฟาร์มปลา ฟาร์มศุข <?=$title?></title>
     <meta http-equiv="refresh" content="5">
     <link rel="SHORTCUT ICON" href="http://led.scsthai.com/images/SCS_icon.ico" />
     <link rel="icon" href="http://led.scsthai.com/images/SCS_icon.ico" type="image/ico" />
@@ -121,6 +134,24 @@ function getTimeOut($ledNo){
         <table border="1" cellpadding="3" cellspacing="5">
             <tr bgcolor="#C1F99D">
             	<td>&nbsp;</td>
+                <td valign="middle"></td>
+                <td>
+                    
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr bgcolor="#C1F99D">
+            	<td>&nbsp;</td>
+                <td valign="middle"></td>
+                <td>
+                    <div align="left"> ฟาร์มปลา ฟาร์มศุข</div>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr bgcolor="#C1F99D">
+            	<td>&nbsp;</td>
                 <td valign="middle"> ไฟกระท่อม </td>
                 <td>
                     [<?=getmsg("farmsook1")?>]
@@ -190,12 +221,21 @@ function getTimeOut($ledNo){
                 <td valign="middle"> อาหารปลา 1 </td>
                 <td>
                     [<?=getmsg("farmsook4")?>]
+                    <div style="font-size:14px">
+					<?php
+                    	if (getSecOff("farmsook4") != 0){ 
+							if (getmsg("farmsook4") == "ON"){
+								echo "<br/>[จะปิด ".date("H:i:s", getSecOff("farmsook4"))."]";
+							}
+						}
+					?>
+                    </div>
                 </td>
                 <td>
                 <div align="left">&nbsp;
                     <input type="button" name="btnOn4a" value="&nbsp;&nbsp;&nbsp; เปิด/ปิด auto 10 นาที) &nbsp;&nbsp;&nbsp;" class="btn" onClick="setOnOff('farmsook4','ON', '600', 'F')" />
                     &nbsp;&nbsp;&nbsp;
-                    <input type="button" name="btnOn4b" value="&nbsp;&nbsp;&nbsp; เปิด/ปิด auto 3 วินาที) &nbsp;&nbsp;&nbsp;" class="btn3sec" onClick="setOnOff('farmsook4','ON', '3', 'F')" />
+                    <input type="button" name="btnOn4b" value="&nbsp;&nbsp;&nbsp; เปิด/ปิด auto 1 นาที) &nbsp;&nbsp;&nbsp;" class="btn3sec" onClick="setOnOff('farmsook4','ON', '60', 'F')" />
                     &nbsp;&nbsp;&nbsp;
                     <input type="button" name="btnOff4" value="&nbsp;&nbsp;&nbsp; ปิด &nbsp;&nbsp;&nbsp;" class="btnClose" onClick="setOnOff('farmsook4','OFF', '0', 'F')"/>
                 </div>
@@ -209,12 +249,21 @@ function getTimeOut($ledNo){
                 <td valign="middle"> อาหารปลา 2 </td>
                 <td>
                     [<?=getmsg("farmsook5")?>]
+                    <div style="font-size:14px">
+					<?php
+                    	if (getSecOff("farmsook5") != 0){ 
+							if (getmsg("farmsook5") == "ON"){
+								echo "<br/>[จะปิด ".date("H:i:s", getSecOff("farmsook5"))."]";
+							}
+						}
+					?>
+                    </div>
                 </td>
                 <td>
                 <div align="left">&nbsp;
                     <input type="button" name="btnOn5a" value="&nbsp;&nbsp;&nbsp; เปิด/ปิด auto 10 นาที) &nbsp;&nbsp;&nbsp;" class="btn" onClick="setOnOff('farmsook5','ON', '600', 'F')" />
                     &nbsp;&nbsp;&nbsp;
-                    <input type="button" name="btnOn5b" value="&nbsp;&nbsp;&nbsp; เปิด/ปิด auto 3 วินาที) &nbsp;&nbsp;&nbsp;" class="btn3sec" onClick="setOnOff('farmsook5','ON', '3', 'F')" />
+                    <input type="button" name="btnOn5b" value="&nbsp;&nbsp;&nbsp; เปิด/ปิด auto 1 นาที) &nbsp;&nbsp;&nbsp;" class="btn3sec" onClick="setOnOff('farmsook5','ON', '60', 'F')" />
                     &nbsp;&nbsp;&nbsp;
                     <input type="button" name="btnOff5" value="&nbsp;&nbsp;&nbsp; ปิด &nbsp;&nbsp;&nbsp;" class="btnClose" onClick="setOnOff('farmsook5','OFF', '0', 'F')"/>
                 </div>
@@ -228,15 +277,33 @@ function getTimeOut($ledNo){
                 <td valign="middle"> อาหารปลา 3 </td>
                 <td>
                     [<?=getmsg("farmsook6")?>]
+                    <div style="font-size:14px">
+					<?php
+                    	if (getSecOff("farmsook6") != 0){ 
+							if (getmsg("farmsook6") == "ON"){
+								echo "<br/>[จะปิด ".date("H:i:s", getSecOff("farmsook6"))."]";
+							}
+						}
+					?>
+                    </div>
                 </td>
                 <td>
                 <div align="left">&nbsp;
                     <input type="button" name="btnOn6a" value="&nbsp;&nbsp;&nbsp; เปิด/ปิด auto 10 นาที) &nbsp;&nbsp;&nbsp;" class="btn" onClick="setOnOff('farmsook6','ON', '600', 'F')" />
                     &nbsp;&nbsp;&nbsp;
-                    <input type="button" name="btnOn6b" value="&nbsp;&nbsp;&nbsp; เปิด/ปิด auto 3 วินาที) &nbsp;&nbsp;&nbsp;" class="btn3sec" onClick="setOnOff('farmsook6','ON', '3', 'F')" />
+                    <input type="button" name="btnOn6b" value="&nbsp;&nbsp;&nbsp; เปิด/ปิด auto 1 นาที) &nbsp;&nbsp;&nbsp;" class="btn3sec" onClick="setOnOff('farmsook6','ON', '60', 'F')" />
                     &nbsp;&nbsp;&nbsp;
                     <input type="button" name="btnOff6" value="&nbsp;&nbsp;&nbsp; ปิด &nbsp;&nbsp;&nbsp;" class="btnClose" onClick="setOnOff('farmsook6','OFF', '0', 'F')"/>
                 </div>
+                </td>
+            </tr>
+            <tr bgcolor="#C1F99D">
+            	<td>&nbsp;</td>
+                <td valign="middle"></td>
+                <td>
+                    
+                </td>
+                <td>
                 </td>
             </tr>
         </table>
